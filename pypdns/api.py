@@ -38,7 +38,10 @@ class PyPDNS(object):
         logger.info("start query() q=[%s]", q)
         if sort_by not in sort_choice:
             raise Exception('You can only sort by ' + ', '.join(sort_choice))
-        response = self.session.get('{}/{}' .format(self.url, q))
+        try:
+            response = self.session.get('{}/{}' .format(self.url, q))
+        except Exception, e:
+            logger.error("Error: " + str(e))
         to_return = []
         for l in response.text.split('\n'):
             if len(l) == 0:
