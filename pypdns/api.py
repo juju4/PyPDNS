@@ -57,4 +57,5 @@ class PyPDNS(object):
             obj['time_last'] = datetime.datetime.fromtimestamp(obj['time_last'])
             to_return.append(obj)
         to_return = sorted(to_return, key=lambda k: k[sort_by])
+        logger.debug("to_return=[%s]", to_return)
         return to_return
